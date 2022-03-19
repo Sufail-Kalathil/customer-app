@@ -4,6 +4,7 @@ import {DashboardComponent} from './dashboard.component';
 import {CustomerComponent} from "./customer/customer.component";
 import {OrderComponent} from "./order/order.component";
 import {AboutComponent} from "./about/about.component";
+import {AuthGuard} from "../../includes/guards/auth.guard";
 
 const routes: Routes = [
   {
@@ -12,19 +13,24 @@ const routes: Routes = [
     children: [
       {
         path: 'customer',
-        component: CustomerComponent
+        component: CustomerComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'order',
-        component: OrderComponent
+        component: OrderComponent,
+        canActivate: [AuthGuard]
+
       },
       {
         path: 'about',
-        component: AboutComponent
+        component: AboutComponent,
+        canActivate: [AuthGuard]
+
       },
       {
-        path:'',
-        redirectTo:'customer'
+        path: '',
+        redirectTo: 'customer'
       }
     ]
   }

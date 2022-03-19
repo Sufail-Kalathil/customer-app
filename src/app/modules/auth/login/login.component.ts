@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {cred} from "../../../config/cred";
 import {Router} from "@angular/router";
 import {ToastService} from "../../../includes/services/toast.service";
+import {LocalstorageService} from "../../../includes/services/localstorage.service";
+import {localstorageVariables} from "../../../config/localstorageVariables";
 
 @Component({
   selector: 'app-login',
@@ -38,7 +40,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private toast: ToastService
+    private toast: ToastService,
+    private localstorageService: LocalstorageService
   ) {
   }
 
@@ -72,7 +75,7 @@ export class LoginComponent implements OnInit {
       return
     }
     if (this.lf['username'].value === cred.username && this.lf['password'].value === cred.password) {
-
+      this.localstorageService.setToLocalStorage(localstorageVariables.isLoggedIn, 'true')
       this.router.navigateByUrl('/app/customer')
     } else {
       // error toast
