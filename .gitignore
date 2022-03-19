@@ -1,4 +1,27 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
+# These are some examples of commonly ignored file patterns.
+# You should customize this list as applicable to your project.
+# Learn more about .gitignore:
+#     https://www.atlassian.com/git/tutorials/saving-changes/gitignore
+
+# Node artifact files
+node_modules/
+dist/
+
+# Compiled Java class files
+*.class
+
+# Compiled Python bytecode
+*.py[cod]
+
+# Log files
+*.log
+
+# Package files
+*.jar
+
+# Maven
+target/
+dist/
 
 # compiled output
 /dist
@@ -8,6 +31,8 @@
 /bazel-out
 
 # dependencies
+/node_modules
+/node_modules
 /node_modules
 
 # profiling files
@@ -31,7 +56,6 @@ chrome-profiler-events*.json
 .history/*
 
 # misc
-/.angular/cache
 /.sass-cache
 /connect.lock
 /coverage
@@ -40,7 +64,10 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+package-lock.json
 
 # System Files
 .DS_Store
 Thumbs.db
+
+prepros.config

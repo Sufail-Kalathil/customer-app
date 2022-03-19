@@ -1,0 +1,40 @@
+.login-wrapper {
+  background-color: #f7f9fb;
+  font-size: 14px;
+}
+
+
+.login-wrapper .card-wrapper {
+  width: 400px;
+  margin-top: 15%;;
+}
+
+.login-wrapper .card {
+  border-color: transparent;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, .05);
+}
+
+.login-wrapper .card.fat {
+  padding: 10px;
+}
+
+.login-wrapper .card .card-title {
+  margin-bottom: 30px;
+}
+
+.login-wrapper .form-control {
+  border-width: 2.3px;
+}
+
+.login-wrapper .form-group label {
+  width: 100%;
+}
+
+.login-wrapper-page .btn.btn-block {
+  padding: 12px 10px;
+}
+
+form .form__error__field {
+  color: red;
+  font-size: 14px;
+}
