@@ -1,1 +1,178 @@
-<p>customer works!</p>
+<section class="customer_wrapper">
+  <div class="container">
+
+    <!--    title-->
+    <div class="row">
+      <div class="col-12">
+        <div class="title__container">
+          <i class="fa fa-user"></i>
+          <h4 style="margin-left: 5px">Customers</h4>
+        </div>
+      </div>
+    </div>
+    <!--    /title-->
+
+    <!--    actions-->
+    <div class="row action-container">
+      <div class="col-12">
+        <div class="action_wrapper">
+          <div class="menu__container">
+            <div class="menu__item" [ngClass]="{'active':selectedMenu==menuTypes.CARD}"
+                 (click)="onChangeViewType(viewType.GRID);selectedMenu=menuTypes.CARD"
+            >
+              <i class="fa fa-user"></i>
+              <a> Card View</a>
+            </div>
+            <div class="menu__item" [ngClass]="{'active':selectedMenu==menuTypes.LIST}"
+                 (click)="onChangeViewType(viewType.LIST);selectedMenu=menuTypes.LIST">
+              <i class="fa fa-user"></i>
+              <a> List View</a>
+            </div>
+            <div class="menu__item" [ngClass]="{'active':selectedMenu==menuTypes.NEW_CUSTOMER}"
+                 (click)="onClickAddCustomer()">
+              <i class="fa fa-user"></i>
+              <a> New Customer</a>
+            </div>
+
+          </div>
+
+          <div class="filter__container">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Filter:</label>
+              <input [(ngModel)]="searchKeyword" (input)="onSearch()" type="text" class="form-control"
+                     id="exampleInputEmail1"
+                     aria-describedby="emailHelp"
+                     placeholder="Search ..">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!--   /action-->
+
+
+    <!--    customer card-->
+    <!--    grid-->
+    <ng-container *ngIf="selectedViewType==viewType.GRID">
+      <div class="row customer-card">
+        <div class="col-3" *ngFor="let customer of currentPageData">
+          <div class="card__container">
+            <div class="card__header">
+              <a>
+                {{customer?.firstName}} {{customer?.lastName}}
+              </a>
+              <a (click)="onViewCustomer(customer?._id)">
+                <i class="fa fa-edit"></i>
+              </a>
+            </div>
+            <div class="card__body">
+              <div class="card__image">
+                <ng-container *ngIf="customer.gender=='male'">
+                  <img class="customer__image" src="./assets/images/male_icon.png">
+                </ng-container>
+                <ng-container *ngIf="customer.gender=='female'">
+                  <img class="customer__image" src="./assets/images/female.png">
+                </ng-container>
+              </div>
+              <div class="card__details">
+                <a>
+                  {{customer?.city}}
+                </a>
+                <a>
+                  ,{{customer.state}}
+
+                </a>
+                <a class="btn_view_more" (click)="onViewCustomer(customer?._id)">
+                  View more
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </ng-container>
+    <!--    / grid-->
+
+    <!--    list-->
+    <ng-container *ngIf="selectedViewType==viewType.LIST">
+      <div class="row ">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">City</th>
+            <th scope="col">State</th>
+            <th scope="col">Order Total</th>
+            <th scope="col">Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let customer of currentPageData">
+            <td>
+              <img src="favicon.ico">
+            </td>
+            <td>{{customer?.firstName}}</td>
+            <td>{{customer?.lastName}}</td>
+            <td>{{customer?.address}}</td>
+            <td>{{customer?.state}}</td>
+            <td>{{customer?.city}}</td>
+            <td>{{customer?.orderTotal}}</td>
+            <td>
+              <button type="submit" class="btn btn-outline-danger btn-sm" (click)="onViewCustomer(customer?._id)">Edit
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </ng-container>
+
+    <!-- /list-->
+    <!--    /customer card-->
+
+
+    <!--    pagination-->
+    <div class="row">
+      <div class="col-12">
+        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+          <li [ngClass]="{disabled:pager.currentPage === 1}" class="page-item">
+            <a class="page-link" (click)="gotoPage(pager.currentPage - 1)" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+          <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}" class="page-item">
+            <a class="page-link" (click)="gotoPage(page)">{{page}}</a>
+          </li>
+
+          <li *ngIf="(pager.totalPages - pager.startPage) > 5 " class="page-item">
+            <a class="page-link" (click)="gotoPage(pager.startPage + 5)">...</a>
+          </li>
+          <li *ngIf="(pager.totalPages - pager.startPage) > 5" class="page-item">
+            <a class="page-link" (click)="gotoPage(pager.totalPages)">{{pager.totalPages}}</a>
+          </li>
+
+          <li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a class="page-link" (click)="gotoPage(pager.currentPage + 1)" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!--    / pagination-->
+  </div>
+</section>
+
+<app-customer-slide #slide
+                    (onUpdate)="onUpdateCustomer($event)"
+                    (onDelete)="onDeleteCustomer($event)"
+                    (onAdd)="onAddCustomer($event)">
+
+</app-customer-slide>

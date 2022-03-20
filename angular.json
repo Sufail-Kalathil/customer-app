@@ -32,8 +32,9 @@
             ],
             "styles": [
               "src/styles.scss",
+              "./node_modules/font-awesome/css/font-awesome.css",
               "src/assets/framework/bootstrap.css",
-              "src/assets/css/custome.css"
+              "src/assets/css/custom.css"
             ],
             "scripts": []
           },

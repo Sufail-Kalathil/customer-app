@@ -8,6 +8,7 @@ import {OrderComponent} from "./order/order.component";
 import {AboutComponent} from "./about/about.component";
 import {CustomerComponent} from "./customer/customer.component";
 import {CustomerSlideComponent} from "./shared/customer-slide/customer-slide.component";
+import {SharedModule} from "../shared/shared.module";
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {CustomerSlideComponent} from "./shared/customer-slide/customer-slide.com
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    SharedModule
   ]
 })
 export class DashboardModule { }

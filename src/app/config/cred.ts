@@ -1,4 +1,4 @@
 export const cred = {
-  username: 'customerapp@app.com',
+  username: 'user@customerapp.com',
   password: 'password'
 }

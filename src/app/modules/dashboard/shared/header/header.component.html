@@ -1,1 +1,28 @@
-<p>header works!</p>
+<section class="header__wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="header__container">
+          <div class="title__container">
+            <img class="header__logo" src="assets/images/customer_logo.png" alt="customer_logo">
+            <h4 class="header_title">Customer Manager</h4>
+          </div>
+          <div class="menu__container">
+            <a class="menu__item" routerLink="/app/customer" routerLinkActive="active">
+              <span>Customers</span>
+            </a>
+            <a class="menu__item" routerLink="/app/order" routerLinkActive="active">
+              <span>Order</span>
+            </a>
+            <a class="menu__item" routerLink="/app/about" routerLinkActive="active">
+              <span>About</span>
+            </a>
+            <a class="menu__item" (click)="onLogout()">
+              <span>Logout</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
